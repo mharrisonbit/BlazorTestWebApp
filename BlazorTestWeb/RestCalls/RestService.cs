@@ -8,14 +8,13 @@ namespace BlazorTestWeb.RestCalls
 {
     public class RestService : IRestService
     {
-        private HttpClient Client;
 
         public async Task<string> GetAllUpcomingEvents()
         {
             var eventString = "";
             try
             {
-                Client = new HttpClient();
+                var Client = new HttpClient();
                 Uri uri = new Uri($"{Constants.BaseUrl}{Constants.CityName}/api/{Constants.Events}?_format=json");
 
                 var response = await Client.GetAsync(uri);
@@ -30,22 +29,31 @@ namespace BlazorTestWeb.RestCalls
 
         public async Task<string> GetAllFeeds()
         {
-            var feedsString = "";
 
+            var data = "";
             try
             {
-                Client = new HttpClient();
-                Uri uri = new Uri($"{Constants.BaseUrl}{Constants.CityName}/api/{Constants.Feeds}?_format=json");
+                var _client = new HttpClient();
 
-                var response = await Client.GetAsync(uri);
-                feedsString = await response.Content.ReadAsStringAsync();
+                HttpResponseMessage response = null;
+                Uri uri = new Uri($"{Constants.BaseUrl}{Constants.CityName}/api/feeds");
+
+                _client.DefaultRequestHeaders.Add("Accept", "application/json");
+                response = await _client.GetAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    data = await response.Content.ReadAsStringAsync();
+                }
+
+                response.Dispose();
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"                RestService:GetAllFeeds {ex.Message}");
+                Console.WriteLine("ERROR!!!                   GetDataAsync:GetAllEvents " + ex.Message);
             }
 
-            return feedsString;
+            return data;
         }
     }
 }
