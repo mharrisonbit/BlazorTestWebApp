@@ -8,10 +8,10 @@ namespace BlazorTestWeb.Pages.Events
 {
     public partial class UpComingEvents
     {
-        public ObservableCollection<Event> UpcomingEvents { get; set; }
-
         [Inject]
         protected IRestService Rest { get; set; }
+
+        public ObservableCollection<Event> UpcomingEvents { get; set; }
 
         protected override async Task OnInitializedAsync()
         {

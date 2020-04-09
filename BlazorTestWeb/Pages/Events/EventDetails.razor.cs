@@ -1,24 +1,28 @@
-﻿using System.Text.Json;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using BlazorTestWeb.Data;
+using BlazorTestWeb.Interfaces;
 using Microsoft.AspNetCore.Components;
 
 namespace BlazorTestWeb.Pages.Events
 {
     public partial class EventDetails
     {
+        [Inject]
+        protected IRestService Rest { get; set; }
         [Parameter]
         public string PassedEvent { get; set; }
 
-        public Event SelectedEvent { get; set; }
+        public EventById EventToShow { get; set; }
 
-        protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
-            System.Console.WriteLine(PassedEvent);
-        }
+            EventToShow = new EventById();
+            var jsonString = await this.Rest.GetEventById(PassedEvent);
+            var tempEventToShow = EventById.FromJson(jsonString);
 
-        void DeserilizeDetailsString(string obj)
-        {
-            SelectedEvent = JsonSerializer.Deserialize<Event>(obj);
+            EventToShow = tempEventToShow.FirstOrDefault();
+            System.Console.WriteLine(EventToShow);
         }
     }
 }
