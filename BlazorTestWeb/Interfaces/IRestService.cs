@@ -7,5 +7,6 @@ namespace BlazorTestWeb.Interfaces
     {
         Task<string> GetAllFeeds();
         Task<string> GetAllUpcomingEvents();
+        Task<string> GetEventById(string id);
     }
 }

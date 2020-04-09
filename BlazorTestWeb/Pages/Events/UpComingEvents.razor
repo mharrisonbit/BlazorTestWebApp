@@ -9,13 +9,12 @@
         @{
             foreach (var item in UpcomingEvents)
             {
-                item.ThisEventString = JsonConvert.SerializeObject(new {item});
                 <div class="card m-3 col-sm-6 col-lg-4" style="width: 18rem;">
                     <img class="card-img-top" src="@item.FieldEventImage" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">@item.Title</h5>
                         <p class="card-text">@item.FieldEventDescription</p>
-                        <a href="/EventDetails?@item.ThisEventString" class="btn btn-primary">Go somewhere</a>
+                        <a href="/EventDetails/@item.Nid" class="btn btn-primary">Go somewhere</a>
                     </div>
                 </div>
             }

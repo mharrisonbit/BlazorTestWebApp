@@ -50,7 +50,35 @@ namespace BlazorTestWeb.RestCalls
             }
             catch (Exception ex)
             {
-                Console.WriteLine("ERROR!!!                   GetDataAsync:GetAllEvents " + ex.Message);
+                Console.WriteLine("ERROR!!!                   RestService:GetAllFeeds " + ex.Message);
+            }
+
+            return data;
+        }
+
+        public async Task<string> GetEventById(string id)
+        {
+            var data = "";
+            try
+            {
+                var _client = new HttpClient();
+
+                HttpResponseMessage response = null;
+                Uri uri = new Uri($"{Constants.BaseUrl}{Constants.CityName}/api/event/{id}?_format=json");
+
+                _client.DefaultRequestHeaders.Add("Accept", "application/json");
+                response = await _client.GetAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    data = await response.Content.ReadAsStringAsync();
+                }
+
+                response.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR!!!                   GetDataAsync:GetEventById " + ex.Message);
             }
 
             return data;
