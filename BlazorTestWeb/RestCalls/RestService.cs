@@ -117,13 +117,13 @@ namespace BlazorTestWeb.RestCalls
             var data = "";
             try
             {
-                var _client = new HttpClient();
+                var _clientOne = new HttpClient();
 
                 HttpResponseMessage response = null;
                 Uri uri = new Uri($"{Constants.BaseUrl}{Constants.CityName}/api/restaurant/{id}?_format=json");
 
-                _client.DefaultRequestHeaders.Add("Accept", "application/json");
-                response = await _client.GetAsync(uri);
+                _clientOne.DefaultRequestHeaders.Add("Accept", "application/json");
+                response = await _clientOne.GetAsync(uri);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -134,7 +134,7 @@ namespace BlazorTestWeb.RestCalls
             }
             catch (Exception ex)
             {
-                Console.WriteLine("ERROR!!!                   GetDataAsync:GetEventById " + ex.Message);
+                Console.WriteLine("ERROR!!!                   GetDataAsync:GetAllRestaraunts " + ex.Message);
             }
 
             return data;
