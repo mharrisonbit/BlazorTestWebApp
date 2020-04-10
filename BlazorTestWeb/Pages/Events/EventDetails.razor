@@ -1,8 +1,51 @@
 ﻿@page "/EventDetails/{PassedEvent}"
 
-<h3>@EventToShow.Title</h3>
+<!------ Include the above in your HEAD tag ---------->
 
-
-@code {
-
-}
+<div class="card link-template-tabcard" style="width:600px;margin: 20px auto;">
+    <div class="card-img-top">
+        <img style="max-width:100%;" src="@EventToShow.FieldEventImage" alt="Multipurpose">
+    </div>
+    <div class="card-header  d-flex justify-content-between align-items-center">
+        <h3 class="package-title" style="max-width: 60%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;font-size: 14px;margin-top: 10px">@EventToShow.Title</h3>
+        <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" data-target="#desc" href="#desc">Description</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" data-target="#info" href="#info">Event Info</a>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body p-0">
+        <div class="tab-content">
+            <div class="tab-pane p-4 active" id="desc" role="tabpanel">
+                <div id="tab-content">
+                    <div id="desc">
+                        @EventToShow.FieldEventDescription
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="info" role="tabpanel">
+                <ul class="list-group list-group-flush ml-0 mb-2">
+                    <li class="list-group-item d-flex justify-content-between align-items-center [hide_empty:version]">
+                        Venue
+                        <span class="badge">Appalachian Wireless Arena</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center [hide_empty:download_count]">
+                        Date
+                        <span class="badge">@EventToShow.FieldEventDate</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center [hide_empty:file_size]">
+                        Phone
+                        <span class="badge">@EventToShow.FieldEventPhone</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer bg-transparent d-flex justify-content-between align-items-center">
+        <b></b>
+        <a href="https://www.wpdownloadmanager.com/" target=_blank class="wpdm-download-link wpdm-download-locked btn btn-info " data-package="30">Order Tickets</a>
+    </div>
+</div>
