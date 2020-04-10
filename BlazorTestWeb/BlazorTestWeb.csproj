@@ -9,6 +9,7 @@
     <Folder Include="RestCalls\" />
     <Folder Include="Interfaces\" />
     <Folder Include="Helpers\" />
+    <Folder Include="Pages\Restaraunts\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />

@@ -44,7 +44,7 @@ namespace BlazorTestWeb.Data
         public static List<Feed> FromJson(string json) => JsonConvert.DeserializeObject<List<Feed>>(json, FeedConverter.Settings);
     }
 
-    public static class Serialize
+    public static class FeedSerialize
     {
         public static string ToJson(this List<Feed> self) => JsonConvert.SerializeObject(self, FeedConverter.Settings);
     }

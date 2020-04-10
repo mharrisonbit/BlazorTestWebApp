@@ -83,5 +83,61 @@ namespace BlazorTestWeb.RestCalls
 
             return data;
         }
+
+        public async Task<string> GetAllRestaraunts()
+        {
+            var data = "";
+            try
+            {
+                var _client = new HttpClient();
+
+                HttpResponseMessage response = null;
+                Uri uri = new Uri($"{Constants.BaseUrl}{Constants.CityName}/api/restaraunts?_format=json");
+
+                _client.DefaultRequestHeaders.Add("Accept", "application/json");
+                response = await _client.GetAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    data = await response.Content.ReadAsStringAsync();
+                }
+
+                response.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR!!!                   GetDataAsync:GetAllRestaraunts " + ex.Message);
+            }
+
+            return data;
+        }
+
+        public async Task<string> GetrestarauntsById(string id)
+        {
+            var data = "";
+            try
+            {
+                var _client = new HttpClient();
+
+                HttpResponseMessage response = null;
+                Uri uri = new Uri($"{Constants.BaseUrl}{Constants.CityName}/api/restaurant/{id}?_format=json");
+
+                _client.DefaultRequestHeaders.Add("Accept", "application/json");
+                response = await _client.GetAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    data = await response.Content.ReadAsStringAsync();
+                }
+
+                response.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR!!!                   GetDataAsync:GetEventById " + ex.Message);
+            }
+
+            return data;
+        }
     }
 }

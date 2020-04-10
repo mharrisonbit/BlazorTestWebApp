@@ -1,27 +1,41 @@
 ﻿@page "/upcomingevents"
 @using Newtonsoft.Json;
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
-<h3>UpComing Events</h3>
-<br/>
-
-<div class="container-fluid">
     <div class="row">
-        @{
-            foreach (var item in UpcomingEvents)
-            {
-                <div class="card m-3 col-sm-6 col-lg-4" style="width: 18rem;">
-                    <img class="card-img-top" src="@item.FieldEventImage" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">@item.Title</h5>
-                        <p class="card-text">@item.FieldEventDescription</p>
-                        <a href="/EventDetails/@item.Nid" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            }
-        }
+        <div class="[ col-xs-12 ]">
+            <ul class="event-list">
+
+                @{
+                    foreach (var item in UpcomingEvents)
+                    {
+                                <li>
+                                    <time datetime="2014-07-20 2000">
+                                        <span class="day">20</span>
+                                        <span class="month">Jan</span>
+                                        <span class="year">2014</span>
+                                        <span class="time">8:00 PM</span>
+                                    </time>
+                                    <img alt="My 24th Birthday!" src="@item.FieldEventImage" />
+                                    <div class="info">
+                                        <h5 class="title">@item.Title</h5>
+                                        <ul>
+                                            <li style="width:50%;"><a href="@item.FieldEventLink"><span class="fa fa-globe"></span> Website</a></li>
+                                            <a href="/EventDetails/@item.Nid"><li style="width:50%;"><span class="fas fa-forward"></span> Read More</li></a>
+                                        </ul>
+                                    </div>
+                                    <div class="social">
+                                        <ul>
+                                            <li class="facebook" style="width:33%;"><a href="#facebook"><span class="fab fa-facebook-square"></span></a></li>
+                                            <li class="twitter" style="width:34%;"><a href="#twitter"><span class="fab fa-twitter-square"></span></a></li>
+                                            <li class="google-plus" style="width:33%;"><a href="#google-plus"><span class="fab fa-google-plus-square"></span></a></li>
+                                        </ul>
+                                    </div>
+                                </li>   
+                    }
+                }
+            </ul>
+        </div>
     </div>
-</div>
-@code {
-    //this is going to call and create the list of events from the returned string.
-    //var event = Event.FromJson(jsonString);
-}
+      
+
