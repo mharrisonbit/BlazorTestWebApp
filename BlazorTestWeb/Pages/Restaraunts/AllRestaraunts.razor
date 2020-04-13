@@ -1,24 +1,33 @@
 ﻿@page "/AllRestaurants"
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
-<h3>Component1</h3>
-<div class="container-fluid">
-    <div class="row">
-        @{
-            foreach (var item in RestarauntList)
-            {
-                <div class="card row w-50 mr-1 mb-1">
-                    <div class="card-body col-12">
-                        <div class="col-12">
-                            <img src="@item.FieldRestaurantLogo" class="img-fluid mx-auto" alt="" width="250" height="250">
+
+<div class="row">
+    <div class="[ col-xs-12 ]" id="RestarauntRow">
+        <ul class="event-list">
+            @{
+                foreach (var item in RestarauntList)
+                {
+                    <li>
+                        <img alt="My 24th Birthday!" src="@item.FieldRestaurantLogo" />
+                        <div class="info">
+                            <h5 class="title">@item.Title</h5>
+                            <ul>
+                                <li style="width:50%;"><a href="@item.FieldRestaurantLink"><span class="fa fa-globe"></span> Website</a></li>
+                                <a href="/Restaurants/@item.Nid"><li style="width:50%;"><span class="fas fa-forward"></span> Read More</li></a>
+                            </ul>
                         </div>
-                        <div class="col-12">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="Restaurants/@item.Nid" class="btn btn-primary">Go somewhere</a>
+                        <div class="social">
+                            <ul>
+                                <li class="facebook" style="width:33%;"><a href="#facebook"><span class="fab fa-facebook-square"></span></a></li>
+                                <li class="twitter" style="width:34%;"><a href="#twitter"><span class="fab fa-twitter-square"></span></a></li>
+                                <li class="google-plus" style="width:33%;"><a href="#google-plus"><span class="fab fa-google-plus-square"></span></a></li>
+                            </ul>
                         </div>
-                    </div>
-                </div>
+                    </li>
+
+                }
             }
-        }
+        </ul>
     </div>
 </div>
