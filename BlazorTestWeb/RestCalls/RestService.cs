@@ -139,5 +139,70 @@ namespace BlazorTestWeb.RestCalls
 
             return data;
         }
+
+        /// <summary>
+        /// Gets all the shops for the city
+        /// </summary>
+        /// <returns>Json string</returns>
+        public async Task<string> GetAllShops()
+        {
+            var data = "";
+            try
+            {
+                var _client = new HttpClient();
+
+                HttpResponseMessage response = null;
+                Uri uri = new Uri($"{Constants.BaseUrl}{Constants.CityName}/api/shops?_format=json");
+
+                _client.DefaultRequestHeaders.Add("Accept", "application/json");
+                response = await _client.GetAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    data = await response.Content.ReadAsStringAsync();
+                }
+
+                response.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR!!!                   GetDataAsync:GetAllRestaraunts " + ex.Message);
+            }
+
+            return data;
+        }
+
+        /// <summary>
+        /// Calls and get the info for the shop by its Id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>JSon string of the shops info</returns>
+        public async Task<string> GetShopById(string id)
+        {
+            var data = "";
+            try
+            {
+                var _clientOne = new HttpClient();
+
+                HttpResponseMessage response = null;
+                Uri uri = new Uri($"{Constants.BaseUrl}{Constants.CityName}/api/shop/{id}?_format=json");
+
+                _clientOne.DefaultRequestHeaders.Add("Accept", "application/json");
+                response = await _clientOne.GetAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    data = await response.Content.ReadAsStringAsync();
+                }
+
+                response.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("ERROR!!!                   GetDataAsync:GetAllRestaraunts " + ex.Message);
+            }
+
+            return data;
+        }
     }
 }

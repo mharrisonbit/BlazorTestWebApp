@@ -10,6 +10,8 @@
     <Folder Include="Interfaces\" />
     <Folder Include="Helpers\" />
     <Folder Include="Pages\Restaraunts\" />
+    <Folder Include="Data\" />
+    <Folder Include="Pages\Shops\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
